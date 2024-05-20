@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AndroidCameraRealiableTestApp</string>
+    <string name="the_number_of_successful_photos_0">The number of Successful Photos: 0</string>
+</resources>
