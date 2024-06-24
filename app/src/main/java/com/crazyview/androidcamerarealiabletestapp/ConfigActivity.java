@@ -25,6 +25,8 @@ public class ConfigActivity extends AppCompatActivity {
     private EditText maxStorage;
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch switchFlash;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    private Switch switchFrontCamera;  // 新增的 Switch 变量
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class ConfigActivity extends AppCompatActivity {
         editTextTestInterval = findViewById(R.id.editTextTestInterval);
         maxStorage = findViewById(R.id.maxStorage);
         switchFlash = findViewById(R.id.switchFlash);
+        switchFrontCamera = findViewById(R.id.switchFrontCamera);  // 初始化新的 Switch 控件
 
         loadJsonConfig();  // 加载配置
 
@@ -51,6 +54,7 @@ public class ConfigActivity extends AppCompatActivity {
         editTextTestInterval.addTextChangedListener(createTextWatcher());
         maxStorage.addTextChangedListener(createTextWatcher());
         switchFlash.setOnCheckedChangeListener((buttonView, isChecked) -> saveJsonConfig());
+        switchFrontCamera.setOnCheckedChangeListener((buttonView, isChecked) -> saveJsonConfig());  // 添加新的 Switch 监听器
 
         // Handle toolbar navigation click
         toolbar.setNavigationOnClickListener(v -> {
@@ -95,6 +99,7 @@ public class ConfigActivity extends AppCompatActivity {
             config.put("test_interval", Integer.parseInt(editTextTestInterval.getText().toString()));
             config.put("max_storage", Integer.parseInt(maxStorage.getText().toString()));
             config.put("flash_enabled", switchFlash.isChecked());
+            config.put("is_front_camera", switchFrontCamera.isChecked());  // 添加新的变量
 
             return config.toString();
         } catch (Exception e) {
@@ -113,6 +118,7 @@ public class ConfigActivity extends AppCompatActivity {
                 editTextTestInterval.setText(jsonObject.optString("test_interval", ""));
                 maxStorage.setText(jsonObject.optString("max_storage", ""));
                 switchFlash.setChecked(jsonObject.optBoolean("flash_enabled", false));
+                switchFrontCamera.setChecked(jsonObject.optBoolean("is_front_camera", false));  // 加载新的变量
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }

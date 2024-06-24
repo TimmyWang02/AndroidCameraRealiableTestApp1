@@ -350,7 +350,8 @@ public class Camera2Helper {
     /**
      * 拍照
      */
-    public void takePicture(File file) {
+    public void takePicture(File file,boolean switchFlash) {
+        setFlashMode(switchFlash);
         mFile = file;
         Log.i(TAG , "new file name:" + file.getName());
         lockFocus();
@@ -753,6 +754,27 @@ public class Camera2Helper {
         }
         Log.i(TAG,"closeCamera()...end");
     }
+
+    /**
+     * @author wang zhizhi
+     * @date 2024/05/20
+     *
+     */
+    private void setFlashMode(boolean switchFlash) {
+        if (mFlashSupported && mPreviewRequestBuilder != null) {
+            if (switchFlash) {
+                mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AE_MODE, CaptureRequest.CONTROL_AE_MODE_ON_ALWAYS_FLASH);
+            } else {
+                mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AE_MODE, CaptureRequest.CONTROL_AE_MODE_ON);
+            }
+            try {
+                mCaptureSession.setRepeatingRequest(mPreviewRequestBuilder.build(), mCaptureCallback, mBackgroundHandler);
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     /**
      * Configures the necessary {@link Matrix} transformation to `textureView`.

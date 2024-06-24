@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".ConfigActivity">
 
     <!-- Toolbar for back navigation -->
@@ -103,7 +102,7 @@
 
     <!-- 第四行：Flash -->
     <LinearLayout
-        android:layout_width="364dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="horizontal">
@@ -117,6 +116,29 @@
 
         <Switch
             android:id="@+id/switchFlash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            tools:ignore="TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml" />
+
+    </LinearLayout>
+
+    <!-- 第五行：Front Camera -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Front Camera"
+            android:layout_gravity="center_vertical"
+            android:paddingEnd="8dp"/>
+
+        <Switch
+            android:id="@+id/switchFrontCamera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"

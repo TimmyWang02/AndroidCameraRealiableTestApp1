@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnConfig;
     private Button btnTest;
     private Button btnReset;
+    private Button btnResult;
+    private Button btnDebug;
     private File configFile;
 
     @Override
@@ -54,6 +56,22 @@ public class MainActivity extends AppCompatActivity {
         // 初始化 Reset 按钮并设置点击事件
         btnReset = findViewById(R.id.btn_reset);
         btnReset.setOnClickListener(v -> resetFunction());
+
+        // 初始化 Result 按钮并设置点击事件
+        btnResult = findViewById(R.id.btn_result);
+        btnResult.setOnClickListener(v -> {
+            // 启动 ResultActivity
+            Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+            startActivity(intent);
+        });
+
+        // 初始化 Debug 按钮并设置点击事件
+        btnDebug = findViewById(R.id.btn_debug);
+        btnDebug.setOnClickListener(v -> {
+            // 启动 DebugActivity
+            Intent intent = new Intent(MainActivity.this, DebugActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void resetFunction() {

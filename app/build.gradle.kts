@@ -8,8 +8,8 @@ android {
 
     defaultConfig {
         applicationId = "com.crazyview.androidcamerarealiabletestapp"
-        minSdk = 34
-        targetSdk = 34
+        minSdk = 26
+        targetSdk = 28
         versionCode = 1
         versionName = "1.0"
 
